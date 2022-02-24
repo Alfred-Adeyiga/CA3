@@ -1,26 +1,93 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { BioDatum } from '../bio-data/entities/bio-datum.entity';
 import { CreateLinkedIdentityDto } from './dto/create-linked-identity.dto';
 import { UpdateLinkedIdentityDto } from './dto/update-linked-identity.dto';
+import { LinkedIdentity } from './entities/linked-identity.entity';
 
 @Injectable()
 export class LinkedIdentityService {
-  create(createLinkedIdentityDto: CreateLinkedIdentityDto) {
-    return 'This action adds a new linkedIdentity';
+  constructor(
+    @InjectRepository(LinkedIdentity)
+    private linkedIdentityRepository: Repository<LinkedIdentity>,
+
+    @InjectRepository(BioDatum)
+    private bioDatumRepository: Repository<BioDatum>
+
+  ) { }
+
+  async create(createlinkedIdentityDto: CreateLinkedIdentityDto) {
+
+    //return 'This action adds a new student';
+
+    const newlinkedIdentity = this.linkedIdentityRepository.create(createlinkedIdentityDto);
+
+    //ideally, below should be wrapped in a transaction so that it can roll back if there is error in any of the stages.
+
+    if (createlinkedIdentityDto.bioDatum) {
+      const newbioDatum = this.bioDatumRepository.create(createlinkedIdentityDto.bioDatum);
+      const bioDatum: BioDatum = await this.bioDatumRepository.save(newbioDatum);
+      newlinkedIdentity.biodatum = bioDatum;
+    }
+    return this.linkedIdentityRepository.save(newlinkedIdentity)
   }
 
-  findAll() {
-    return `This action returns all linkedIdentity`;
+
+  async findAll() {
+    //return `This action returns all students`;
+    return await this.linkedIdentityRepository.find({ relations: ['bioDatum'] });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} linkedIdentity`;
+  async findOne(id: number) {
+    //return `This action returns a #${id} student`;
+    return await this.linkedIdentityRepository.findOne(id);
   }
 
-  update(id: number, updateLinkedIdentityDto: UpdateLinkedIdentityDto) {
-    return `This action updates a #${id} linkedIdentity`;
+  async update(id: number, updatelinkeeIdentityDto: UpdateLinkedIdentityDto) {
+    //return `This action updates a #${id} student`;
+    return await this.linkedIdentityRepository.update(id, updatelinkeeIdentityDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} linkedIdentity`;
+  async remove(id: number) {
+    //return `This action removes a #${id} student`;
+    return await this.linkedIdentityRepository.delete(id);
   }
+
+
+  async setBioDatumById(linkedIdentityId: number, bioDataId:
+    number) {
+    try {
+      return await
+        this.linkedIdentityRepository.createQueryBuilder()
+          .relation(LinkedIdentity, "bioData")
+          .of(linkedIdentityId)
+          .set(bioDataId)
+    } catch (error) {
+      throw new HttpException({
+        status:
+          HttpStatus.INTERNAL_SERVER_ERROR,
+        error: `There was a problem setting user for
+    student: ${error.message}`,
+      }, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  async unsetBioDatumById(linkedIdentityId: number) {
+    try {
+      return await
+        this.linkedIdentityRepository.createQueryBuilder()
+          .relation(LinkedIdentity, "bioData")
+          .of(linkedIdentityId)
+          .set(null)
+    } catch (error) {
+      throw new HttpException({
+        status:
+          HttpStatus.INTERNAL_SERVER_ERROR,
+        error: `There was a problem setting user for
+    student: ${error.message}`,
+      }, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
 }

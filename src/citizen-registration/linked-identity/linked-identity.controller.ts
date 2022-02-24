@@ -5,7 +5,7 @@ import { UpdateLinkedIdentityDto } from './dto/update-linked-identity.dto';
 
 @Controller('linked-identity')
 export class LinkedIdentityController {
-  constructor(private readonly linkedIdentityService: LinkedIdentityService) {}
+  constructor(private readonly linkedIdentityService: LinkedIdentityService) { }
 
   @Post()
   create(@Body() createLinkedIdentityDto: CreateLinkedIdentityDto) {
@@ -30,5 +30,17 @@ export class LinkedIdentityController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.linkedIdentityService.remove(+id);
+  }
+
+  @Patch(':linkedIdentityId/bioDatum/bioDatumId')
+  setBioDatumById(@Param('linkedIdentityId') linkedIdentityId:
+    number, @Param('bioDatumId') bioDatumId: number) {
+    return this.linkedIdentityService.setBioDatumById(linkedIdentityId, bioDatumId);
+  }
+  @Delete(':linkedIdentityId/bioDatum')
+  unsetBioDatumById(@Param('linkedIdentityId') linkedIdentityId:
+    number) {
+    return
+    this.linkedIdentityService.unsetBioDatumById(linkedIdentityId);
   }
 }
