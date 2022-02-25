@@ -8,7 +8,7 @@ export class BioDataController {
   constructor(private readonly bioDataService: BioDataService) { }
 
   @Get('create')
-  @Render('users/create-user.html')
+  @Render('bio-data/create-user.html')
   createForm() {
   }
 

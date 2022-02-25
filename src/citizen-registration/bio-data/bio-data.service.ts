@@ -13,8 +13,8 @@ export class BioDataService {
     private bioDataRepository: Repository<BioDatum>) { }
 
   async create(createBioDatumDto: CreateBioDatumDto) {
-    const newUser: BioDatum = this.bioDataRepository.create(createBioDatumDto)
-    return this.bioDataRepository.save(newUser);
+    const newbioDatum: BioDatum = this.bioDataRepository.create(createBioDatumDto)
+    return this.bioDataRepository.save(newbioDatum);
 
     //return 'This action adds a new user';
 
@@ -23,7 +23,7 @@ export class BioDataService {
   async findAll() {
     return await this.bioDataRepository.find();
 
-    //return `This action returns all users`;
+    //return `This action returns all `;
 
   }
 
