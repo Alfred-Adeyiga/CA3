@@ -33,14 +33,11 @@ export class LinkedIdentityController {
   }
 
   @Patch(':linkedIdentityId/bioDatum/bioDatumId')
-  setBioDatumById(@Param('linkedIdentityId') linkedIdentityId:
-    number, @Param('bioDatumId') bioDatumId: number) {
-    return this.linkedIdentityService.setBioDatumById(linkedIdentityId, bioDatumId);
+  setBioDatumById(@Param('linkedIdentityId') linkedIdentityId: string, @Param('bioDatumId') bioDatumId: string) {
+    return this.linkedIdentityService.setBioDatumById(+linkedIdentityId, +bioDatumId);
   }
   @Delete(':linkedIdentityId/bioDatum')
-  unsetBioDatumById(@Param('linkedIdentityId') linkedIdentityId:
-    number) {
-    return
-    this.linkedIdentityService.unsetBioDatumById(linkedIdentityId);
+  unsetBioDatumById(@Param('linkedIdentityId') linkedIdentityId: string) {
+    return this.linkedIdentityService.unsetBioDatumById(+linkedIdentityId);
   }
 }

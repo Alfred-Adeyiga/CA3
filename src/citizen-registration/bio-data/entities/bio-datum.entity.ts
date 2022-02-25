@@ -21,26 +21,26 @@ export class BioDatum {
     @Column()
     nationality: string
 
-    @Column()
+    @Column({ nullable: true })
     countryofbirth: string;
 
-    @Column()
+    @Column({ nullable: true})
     stateofbirth: string;
 
-    @Column()
+    @Column({ nullable: true })
     townofbirth: string;
 
     @Column()
     address: string
 
-    @Column()
+    @Column({ nullable: true })
     profession: string;
 
     @Column({ default: true })
     isActive: boolean;
     LinkedIdentity: any;
 
-    @OneToOne(type => LinkedIdentity, LinkedIdentity => LinkedIdentity.biodatum, { cascade: true })
+    @OneToOne(type => LinkedIdentity, LinkedIdentity => LinkedIdentity.biodatum)
     linkedidentity: LinkedIdentity;
 
 }

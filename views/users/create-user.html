@@ -24,7 +24,7 @@
         </div>
     </div>
     <div class="grid-item-row-2">
-        <form class="box" id="createbioDatumForm" action="/" method="POST">
+        <form class="box" id="createbioDatumForm" action="/bio-data" method="POST">
             <fieldset id="createbioDatumFormFieldSet" class="container">
                 <div class="field">
                     <label class="label">First name:</label>
@@ -60,18 +60,20 @@
                     <div class="field">
                         <label class="label">Country of birth:</label>
                         <div class="control has-icons-right">
-                            <input class="input" id="Country" name="Country" type="text" placeholder="Country of birth" required>
+                            <input class="input" id="Country" name="Country" type="text" placeholder="Country of birth">
                         </div>
                         <div class="field">
                             <label class="label">State of birth:</label>
                             <div class="control has-icons-right">
-                                <input class="input" id="State" name="State" type="text" placeholder="State of birth" required>
+                                <input class="input" id="State" name="State" type="text" placeholder="State of birth"
+                                    required>
                             </div>
                         </div>
                         <div class="field">
                             <label class="label">Town of birth:</label>
                             <div class="control has-icons-right">
-                                <input class="input" id="Town" name="Town" type="text" placeholder="Town of birth" required>
+                                <input class="input" id="Town" name="Town" type="text" placeholder="Town of birth"
+                                    required>
                             </div>
                         </div>
                     </div>
@@ -84,14 +86,16 @@
                     <div class="field">
                         <label class="label">Profession:</label>
                         <div class="control has-icons-right">
-                            <input class="input" id="Profession" name="Profession" type="text" placeholder="Profession" required>
+                            <input class="input" id="Profession" name="Profession" type="text" placeholder="Profession"
+                                required>
                         </div>
                     </div>
                 </div>
 
                 <div class="field is-grouped">
                     <div class="control">
-                        <button type="submit" id="submitCreatebioDatumForm" class="button is-link is-small">Submit</button>
+                        <button type="submit" id="submitCreatebioDatumForm"
+                            class="button is-link is-small">Submit</button>
                     </div>
                     <div class="control">
                         <button type="reset" class="button is-light is-small">Clear</button>
@@ -139,7 +143,7 @@
         if (lastName == '') {
             lastName.reportValidity();
             return false;
-        
+
         }
 
         const dateOfBirth = document.getElementById('dateOfBirth').value;
@@ -153,7 +157,7 @@
             nationality.reportValidity();
             return false;
         }
-        
+
 
         const stateofbirth = document.getElementById('stateofbirth').value;
         if (stateofbirth == '') {
