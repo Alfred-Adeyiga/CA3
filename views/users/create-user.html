@@ -91,6 +91,24 @@
                         </div>
                     </div>
                 </div>
+                <div class="field">
+                    <label class="label">NIN:</label>
+                    <div class="control has-icons-right">
+                        <input class="input" id="NIN" name="NIN" type="text" placeholder="NIN">
+                    </div>
+                    <div class="field">
+                        <label class="label">BVN:</label>
+                        <div class="control has-icons-right">
+                            <input class="input" id="BVN" name="BVN" type="text" placeholder="BVN" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Mobile Number:</label>
+                        <div class="control has-icons-right">
+                            <input class="input" id="mobilenumber" name="mobilenumber" type="text" placeholder="Mobile Number">
+                        </div>
+                    </div>
+                </div>
 
                 <div class="field is-grouped">
                     <div class="control">
@@ -179,11 +197,35 @@
 
         const address = document.getElementById('address').value;
 
+        const NIN = document.getElementById('NIN').value;
+        if (NIN == '') {
+            NIN.reportValidity();
+            return false;
+        }
+
         const Profession = document.getElementById('profession').value;
         if (Profession == '') {
             Profession.reportValidity();
             return false;
         }
+
+        const Profession = document.getElementById('profession').value;
+        if (Profession == '') {
+            Profession.reportValidity();
+            return false;
+        }
+
+        const Profession = document.getElementById('profession').value;
+        if (Profession == '') {
+            Profession.reportValidity();
+            return false;
+        }
+
+
+
+
+
+
 
 
         //start the button spinner
