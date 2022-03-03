@@ -44,9 +44,9 @@ export class LinkedIdentityService {
     return await this.linkedIdentityRepository.findOne(id);
   }
 
-  async update(id: number, updatelinkeeIdentityDto: UpdateLinkedIdentityDto) {
+  async update(id: number, updatelinkedIdentityDto: UpdateLinkedIdentityDto) {
     //return `This action updates a #${id} student`;
-    return await this.linkedIdentityRepository.update(id, updatelinkeeIdentityDto);
+    return await this.linkedIdentityRepository.update(id, updatelinkedIdentityDto);
   }
 
   async remove(id: number) {

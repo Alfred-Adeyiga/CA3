@@ -203,15 +203,15 @@
             return false;
         }
 
-        const Profession = document.getElementById('profession').value;
-        if (Profession == '') {
-            Profession.reportValidity();
+        const BVN = document.getElementById('BVN').value;
+        if (BVN == '') {
+            BVN.reportValidity();
             return false;
         }
 
-        const Profession = document.getElementById('profession').value;
-        if (Profession == '') {
-            Profession.reportValidity();
+        const mobilenumber = document.getElementById('mobilenumber').value;
+        if (mobilenumber== '') {
+            mobilenumber.reportValidity();
             return false;
         }
 
@@ -238,7 +238,7 @@
                 'Content-Type': 'application/json'
             },
             //credentials: 'same-origin',
-            body: JSON.stringify({ firstName, middleName, lastName, dateOfBirth, nationality, address, Profession, countryofbirth, stateofbirth, townofbirth })
+            body: JSON.stringify({ firstName, middleName, lastName, dateOfBirth, nationality, address, Profession, countryofbirth, stateofbirth, townofbirth, NIN, BVN, mobilenumber})
         }
 
         //call fetch
